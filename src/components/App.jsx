@@ -12,7 +12,7 @@ const SharedLayout = lazy(() => import('./SharedLayout/SharedLayout'));
 export const App = () => {
   return (
     <Routes>
-      <Route path="/" element={<SharedLayout />}>
+      <Route path="/goit-react-hw-05-movies/" element={<SharedLayout />}>
         <Route index element={<Home />}></Route>
         <Route path="movies" element={<Movies />}></Route>
         <Route path="movies/:movieId/*" element={<MovieDetails />}>
