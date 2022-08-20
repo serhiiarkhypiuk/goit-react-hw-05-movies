@@ -9,7 +9,7 @@ export default function SharedLayout() {
       <header className={styles.header}>
         <nav>
           <NavLink
-            to="/"
+            to="/goit-react-hw-05-movies/"
             className={navData =>
               navData.isActive ? styles.activeLink : styles.link
             }
@@ -17,7 +17,7 @@ export default function SharedLayout() {
             Home
           </NavLink>
           <NavLink
-            to="/movies"
+            to="/goit-react-hw-05-movies/movies"
             className={navData =>
               navData.isActive ? styles.activeLink : styles.link
             }

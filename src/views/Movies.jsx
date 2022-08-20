@@ -54,7 +54,9 @@ export default function MoviesView() {
           {movies.length !== 0 &&
             movies.map(movie => (
               <li key={movie.id}>
-                <Link to={`/movies/${movie.id}`}>{movie.title}</Link>
+                <Link to={`/goit-react-hw-05-movies/movies/${movie.id}`}>
+                  {movie.title}
+                </Link>
                 <hr />
               </li>
             ))}
