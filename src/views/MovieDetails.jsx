@@ -1,5 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import { useParams, NavLink, Outlet, useNavigate } from 'react-router-dom';
+import React, { useState, useEffect, Suspense } from 'react';
+import {
+  useParams,
+  NavLink,
+  Outlet,
+  useLocation,
+  Link,
+} from 'react-router-dom';
 import PageHeading from '../components/PageHeading/PageHeading';
 import * as api from '../services/movies-api';
 import styles from '../components/SharedLayout/SharedLayout.module.css';
@@ -7,7 +13,7 @@ import styles from '../components/SharedLayout/SharedLayout.module.css';
 export default function MovieDetailsView() {
   const { movieId } = useParams();
   const [movie, setMovie] = useState(null);
-  const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     api.fetchMovieDetails(movieId).then(setMovie);
@@ -19,7 +25,9 @@ export default function MovieDetailsView() {
         <>
           <PageHeading text={movie.title} />
 
-          <button onClick={() => navigate(-1)}>Go back</button>
+          <Link className="button" to={location.state.from}>
+            Go back
+          </Link>
 
           <div style={{ display: 'flex' }}>
             <img
@@ -61,6 +69,7 @@ export default function MovieDetailsView() {
                     className={navData =>
                       navData.isActive ? styles.activeLink : styles.link
                     }
+                    state={{ from: location.state.from }}
                   >
                     Cast
                   </NavLink>
@@ -71,6 +80,7 @@ export default function MovieDetailsView() {
                     className={navData =>
                       navData.isActive ? styles.activeLink : styles.link
                     }
+                    state={{ from: location.state.from }}
                   >
                     Reviews
                   </NavLink>
@@ -80,7 +90,10 @@ export default function MovieDetailsView() {
           </div>
         </>
       )}
-      <Outlet />
+
+      <Suspense fallback={<div>Loading...</div>}>
+        <Outlet />
+      </Suspense>
     </>
   );
 }

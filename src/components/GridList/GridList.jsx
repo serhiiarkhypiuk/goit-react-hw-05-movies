@@ -7,5 +7,5 @@ export default function GridList({ children }) {
 }
 
 GridList.propTypes = {
-  children: PropTypes.node,
+  children: PropTypes.node.isRequired,
 };

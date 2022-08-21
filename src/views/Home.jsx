@@ -1,10 +1,11 @@
 import PageHeading from 'components/PageHeading/PageHeading';
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import * as api from '../services/movies-api';
 import GridList from 'components/GridList/GridList';
 
 export default function Home() {
+  const location = useLocation();
   const [movies, setMovies] = useState(null);
 
   useEffect(() => {
@@ -19,7 +20,7 @@ export default function Home() {
         <GridList>
           {movies.map(movie => (
             <li key={movie.id}>
-              <Link to={`/goit-react-hw-05-movies/movies/${movie.id}`}>
+              <Link to={`/movies/${movie.id}`} state={{ from: location }}>
                 {movie.title}
               </Link>
               <hr />

@@ -30,7 +30,7 @@ a {
   font-size: 18px;
 }
 
-button {
+.button {
   border: none;
   cursor: pointer;
   outline: none;

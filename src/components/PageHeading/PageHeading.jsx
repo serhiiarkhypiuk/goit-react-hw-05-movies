@@ -7,5 +7,5 @@ export default function PageHeading({ text }) {
 }
 
 PageHeading.propTypes = {
-  text: PropTypes.string,
+  text: PropTypes.string.isRequired,
 };

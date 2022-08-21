@@ -15,7 +15,6 @@ export default function SearchBar({ onSubmit }) {
       return alert('Please enter movie name');
     }
     onSubmit(movieQuery);
-    setMovieQuery('');
   }
 
   return (
@@ -26,11 +25,13 @@ export default function SearchBar({ onSubmit }) {
         value={movieQuery}
         onChange={handleChange}
       />
-      <button type="submit">Search</button>
+      <button className="button" type="submit">
+        Search
+      </button>
     </form>
   );
 }
 
 SearchBar.propTypes = {
-  onSubmit: PropTypes.func,
+  onSubmit: PropTypes.func.isRequired,
 };
