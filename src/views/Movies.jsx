@@ -16,7 +16,6 @@ export default function MoviesView() {
       return;
     }
     fetchMovies();
-    // eslint-disable-next-line
   }, [movieQuery]);
 
   useEffect(() => {

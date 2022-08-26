@@ -14,6 +14,7 @@ export default function MovieDetailsView() {
   const { movieId } = useParams();
   const [movie, setMovie] = useState(null);
   const location = useLocation();
+  const goBack = location?.state?.from ?? '/'
 
   useEffect(() => {
     api.fetchMovieDetails(movieId).then(setMovie);
@@ -25,7 +26,7 @@ export default function MovieDetailsView() {
         <>
           <PageHeading text={movie.title} />
 
-          <Link className="button" to={location.state.from}>
+          <Link className="button" to={goBack}>
             Go back
           </Link>
 
@@ -69,7 +70,7 @@ export default function MovieDetailsView() {
                     className={navData =>
                       navData.isActive ? styles.activeLink : styles.link
                     }
-                    state={{ from: location.state.from }}
+                    state={{ from: goBack }}
                   >
                     Cast
                   </NavLink>
@@ -80,7 +81,7 @@ export default function MovieDetailsView() {
                     className={navData =>
                       navData.isActive ? styles.activeLink : styles.link
                     }
-                    state={{ from: location.state.from }}
+                    state={{ from: goBack }}
                   >
                     Reviews
                   </NavLink>
