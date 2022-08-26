@@ -15,6 +15,19 @@ export default function MoviesView() {
     if (movieQuery.trim() === '') {
       return;
     }
+
+    function fetchMovies() {
+      api
+        .fetchMovie(movieQuery)
+        .then(data => setMovies(data.results))
+        .then(
+          navigate({
+            ...location,
+            search: `query=${movieQuery}`,
+          })
+        );
+    }
+
     fetchMovies();
   }, [movieQuery]);
 
@@ -29,18 +42,6 @@ export default function MoviesView() {
   function onSearchQuery(movieQuery) {
     setMovies([]);
     setMovieQuery(movieQuery);
-  }
-
-  function fetchMovies() {
-    api
-      .fetchMovie(movieQuery)
-      .then(data => setMovies(data.results))
-      .then(
-        navigate({
-          ...location,
-          search: `query=${movieQuery}`,
-        })
-      );
   }
 
   return (
